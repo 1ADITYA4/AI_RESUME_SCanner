@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Matching Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Resume Matching Results</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Resume Name</th>
+                    <th>Matching Score (%)</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% set best_score = scores | max %}
+            {% set best_index = scores.tolist().index(best_score) %}
+
+
+                {% for name, score in zip(resume_names, scores) %}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ score * 100 | round(2) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-primary">Back to Upload</a>
+    </div>
+</body>
+</html>

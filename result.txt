@@ -1,0 +1,18 @@
+i ran this with not so optimal format of job_description
+
+🔹 Resume Matching Scores:
+
+1. AI_ML_INTERN.pdf: 5.20% match
+
+Corrected the job_description format (TF_IDF +cosine_similarity)
+
+🔹 Resume Matching Scores:
+
+1. AI_ML_INTERN.pdf: 17.16% match
+
+at last used (BERT + Cosine similarity ) for matching synonyms ,phrases and contextual dependency of phrases eg: machine learning
+
+
+🔹 Resume Matching Scores:
+
+1. AI_ML_INTERN.pdf: 67.05% match

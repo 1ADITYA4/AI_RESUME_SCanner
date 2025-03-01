@@ -6,10 +6,7 @@ import string
 import csv
 import logging
 import argparse
-import torch
-from transformers import BertTokenizer, BertModel
-
-
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Set up logging
@@ -97,18 +94,12 @@ def match_resumes(resumes, job_desc):
         logging.error("❌ Cannot compute similarity: No valid resume or job description found!")
         return []
 
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    model = BertModel.from_pretrained('bert-base-uncased')
+    vectorizer = TfidfVectorizer()
+    documents = resumes + [job_desc]
+    tfidf_matrix = vectorizer.fit_transform(documents)
 
-    # Tokenize and encode the resumes and job description
-    inputs = tokenizer(resumes + [job_desc], return_tensors='pt', padding=True, truncation=True)
-    with torch.no_grad():
-        embeddings = model(**inputs).last_hidden_state.mean(dim=1)
-
-    job_vector = embeddings[-1]  # Last embedding is for the job description
-
-    similarities = cosine_similarity(job_vector.unsqueeze(0), embeddings[:-1]).flatten()  # Compare with resumes
-
+    job_vector = tfidf_matrix[-1]  # Last document is the job description
+    similarities = cosine_similarity(job_vector, tfidf_matrix[:-1]).flatten()  # Compare with resumes
 
     return similarities
 

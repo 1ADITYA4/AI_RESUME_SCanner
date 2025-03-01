@@ -1,0 +1,11 @@
+Job Title: Data Scientist
+
+Responsibilities:
+- Analyze large datasets to extract meaningful insights.
+- Build predictive models using Python and machine learning algorithms.
+- Work with big data technologies such as Hadoop and Spark.
+
+Required Skills:
+- Python, SQL, Machine Learning, Deep Learning, Data Visualization
+- Experience with TensorFlow, PyTorch, or Scikit-learn
+- Strong problem-solving skills and analytical thinking
